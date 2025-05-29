@@ -1,0 +1,116 @@
+! ====================================
+ DEFINICIÓN DE CONJUNTOS Y RELACIONES
+ =====================================;
+SETS:
+!INDICES: i=producto j=planta_elaboradora k=centro;
+    PRODUCTOS /1..6/: DEMANDAxP, FACTREF;         ! Productos: leche entera, descremada, en polvo entera, en polvo descremada, crema, manteca;
+    PLANTAS /1..3/: M, L, C;                    ! Plantas elaboradoras: Buenos Aires, Córdoba, Santa Fe;
+    CENTROS /1..4/: FRACCDEM;                   ! Centros de distribución: CABA, Rosario, Mendoza, Tucumán;
+
+
+!variable de decision;
+    STOCK(PRODUCTOS, PLANTAS): S;                     !stock al final del periodo de productos en plantas (aplica a leche en polvo);
+    CANTIDADPRODUCTO(PRODUCTOS, PLANTAS, CENTROS): Q; !cantidad de producto i de j a k;
+
+    PLXCN(PLANTAS, CENTROS): DIST, COSTDIST;    ! Relación planta-centro: distancia y costo base transporte;
+
+!Conjuntos de datos a utilizar;
+
+    PRODUCTOSAUX /1..4/;                       ! Subconjunto para productos con capacidad (Leches fluidas agrupadas y leches en polvo agrupadas);
+    PRODUXPL(PRODUCTOSAUX, PLANTAS): CAPMAX;   ! Capacidad de producción por planta para productos agrupados;
+
+
+    SCALARS: DISPONIBILIDADLECHE;              ! Escalar: disponibilidad total de leche cruda;
+ENDSETS
+
+DATA:
+
+DEMANDA, FACTREF, FRACCDEM, DIST, COSTDIST, CAPMAX, DISPONIBILIDADLECHE = @OLE(C:\Users\lucia\Downloads\TP\lingo.xlsx);
+
+
+ENDDATA
+
+!FUNCION OBJETIVO:;
+[FO] MIN = @SUM(PRODUCTOS(I): @SUM(PLANTAS(J): @SUM(CENTROS(K): FACTREF(I) * COSTDIST(J,K) * Q(I,J,K) * 1/1000)))+ 20 * @SUM(PLANTAS(J): M(J));
+
+!1 - Satisfacción mínima de demanda por producto y centro;
+@FOR(PRODUCTOS(I), CENTROS(K):
+    @SUM(PLANTAS(J): Q(I,J,K)) >= FRACCDEM(I,K) * DEMANDAxP(I)
+);
+
+!2 - Restricción de disponibilidad total de leche cruda;
+@SUM(PLANTAS(J), CENTROS(K): 1.063 * Q(1,J,K)) +
+@SUM(PLANTAS(J): 1.063 * L(J)) +
+@SUM(PLANTAS(J), CENTROS(K): 8.755 * Q(3,J,K)) +
+@SUM(PLANTAS(J): 8.755 * S(3,J)) <= DISPONIBILIDADLECHE;
+
+!3 - Definición de L(j) para j en {1,2} - VER COMO RESTRINGIR;
+@FOR(PLANTAS(J):
+    L(J) = 
+        @SUM(CENTROS(K): Q(2,J,K)) +
+        M(J) +
+        11.525 * @SUM(CENTROS(K): Q(4,J,K)) -
+        11.525 * S(4,J)
+);
+
+!4 - Cantidad de leche desnatada en el planta 4;
+@SUM(PLANTAS(J): M(J)) - 
+@SUM(CENTROS(K): Q(2,3,K)) - 
+11.525 * S(4,J) = 0;
+
+!5 - Crema - subproducto Cj para j en {1,2} - VER COMO RESTRINGIR;
+@FOR(PLANTAS(J):
+    C(J) = 0.08 * L(J)
+);
+
+!6 - Definición de C(j) como función de productos 5 y 6 enviados desde planta j={1,2};
+@FOR(PLANTAS(J):
+    C(J) = 
+        @SUM(CENTROS(K): Q(5,J,K)) + 
+        2.77 * @SUM(CENTROS(K): Q(6,J,K))
+);
+
+!7 - Restricción de disponibilidad de leche entera en plantas 1 y 2 - VER COMO RESTRINGIR;;
+@FOR(PLANTAS(J):
+    @SUM(CENTROS(K): Q(1,J,K)) +
+    L(J) +
+    11.525 * (
+        @SUM(CENTROS(K): Q(3,J,K)) + 
+        S(3,J)
+    ) <= P(1,J)
+);
+
+!8 - Restricción de disponibilidad de leche cruda para planta 3;
+@SUM(CENTROS(K): Q(1,3,K)) +
+8.755 * (
+    @SUM(CENTROS(K): Q(3,3,K)) +
+    S(3,3)
+) <= P(1,3);
+
+
+!9 - Restricción de capacidad del subproducto Cj para j en {1,2} - VER COMO RESTRINGIR;
+@FOR(PLANTAS(J):
+    C(J) <= P(3,J)
+);
+
+!10 - Restricción de capacidad para producto 6 (manteca)para j en {1,2} - VER COMO RESTRINGIR;;
+@FOR(PLANTAS(J):
+    @SUM(CENTROS(K): Q(6,J,K)) <= P(4,J)
+);
+
+!11 - Cantidad de leche en polvo producida en las plantas;
+@FOR(PLANTAS(J):
+    @SUM(PRODUCTOS(I): S(I,J)) +
+    @SUM(CENTROS(K): Q(I,J,K)))
+    <= CAPMAX(2,J);
+);
+
+!12 - Restricciones no negatividad;
+@FOR(PRODUCTOS(I), PLANTAS(J), CENTROS(K):
+    Q(I,J,K) >= 0
+);
+
+@FOR(PLANTAS(J), PRODUCTOS(I):
+     S(I,J) >= 0
+    )
+);
