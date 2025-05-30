@@ -6,23 +6,23 @@ SETS:
     ! Productos (i): 1. leche entera, 2. descremada, 3. en polvo entera, 4. en polvo descremada, 5. crema, 6. manteca;
     ! Atributos: 
     ! - DEMANDA_PRODUCTO: demanda general de cada tipo de producto, 
-    ! - FACTOR_REFRIGERACION: factor que determina los costos adicionales de tranporte para productos refrigerados por planta;
-    PRODUCTOS /1..6/: DEMANDA_PRODUCTO, FACTOR_REFRIGERACION;       
+    ! - FACTOR_REFRIGERACION_PRODUCTO: factor que determina los costos adicionales de tranporte para productos refrigerados por planta;
+    PRODUCTOS /1..6/: DEMANDA_PRODUCTO, FACTOR_REFRIGERACION_PRODUCTO;       
+
+    ! Centros de distribución (k): 1. CABA, 2. Rosario, 3. Mendoza, 4. Tucumán;
+    ! Atributos:
+    ! - FRACCION_DEMANDA_CENTRO: fracción de la demanda total según cada centro de distribución;
+    CENTROS /1..4/: FRACCION_DEMANDA_CENTRO;
 
     ! Plantas elaboradoras (j): 1. Buenos Aires, 2. Córdoba, 3. Santa Fe; 
     ! Atributos:
     ! - M: materia prima, 
     ! - L: leche descremada,
     ! - C: crema;
-    PLANTAS /1..3/: M, L, C;               
-         
-    ! Centros de distribución (k): 1. CABA, 2. Rosario, 3. Mendoza, 4. Tucumán;
-    ! Atributos:
-    ! - FRACCION_DEMANDA: fracción de demanda según cada centro de distribución;
-    CENTROS /1..4/: FRACCION_DEMANDA;                   
+    PLANTAS /1..3/: M, L, C;
 
 !Variables de decisión;
-    !stock al final del periodo de productos en plantas (aplica a leche en polvo);
+    !stock al final del periodo de productos en plantas (aplica a 3. leche en polvo entera y 4. leche en polvo descremada);
     STOCK(PRODUCTOS, PLANTAS): S;                     
     !cantidad de producto i de j a k;
     CANTIDADPRODUCTO(PRODUCTOS, PLANTAS, CENTROS): Q;
@@ -35,12 +35,12 @@ SETS:
     ! Capacidad de producción por planta para productos agrupados;
     PRODUXPL(PRODUCTOSAUX, PLANTAS): CAPMAX;   
     ! Escalar: disponibilidad total de leche cruda;
-    SCALARS: DISPONIBILIDADLECHE;              
+    SCALARS: DISPONIBILIDAD_LECHE;              
 ENDSETS
 
 DATA:
 
-DEMANDA_PRODUCTO, FACTOR_REFERENCIA_PRODUCTO, FRACCION_DEMANDA, DIST, COSTDIST, CAPMAX, DISPONIBILIDADLECHE = @OLE(C:\Users\lucia\Downloads\TP\lingo.xlsx);
+DEMANDA_PRODUCTO, FACTOR_REFRIGERACION_PRODUCTO, FRACCION_DEMANDA_CENTRO, DIST, COSTDIST, CAPMAX, DISPONIBILIDAD_LECHE = @OLE(C:\Users\lucia\Downloads\TP\lingo.xlsx);
 
 ENDDATA
 
@@ -49,14 +49,14 @@ ENDDATA
 
 !1 - Satisfacción mínima de demanda por producto y centro;
 @FOR(PRODUCTOS(I), CENTROS(K):
-    @SUM(PLANTAS(J): Q(I,J,K)) >= FRACCION_DEMANDA(I,K) * DEMANDA_PRODUCTO(I)
+    @SUM(PLANTAS(J): Q(I,J,K)) >= FRACCION_DEMANDA_CENTRO(I,K) * DEMANDA_PRODUCTO(I)
 );
 
 !2 - Restricción de disponibilidad total de leche cruda;
 @SUM(PLANTAS(J), CENTROS(K): 1.063 * Q(1,J,K)) +
 @SUM(PLANTAS(J): 1.063 * L(J)) +
 @SUM(PLANTAS(J), CENTROS(K): 8.755 * Q(3,J,K)) +
-@SUM(PLANTAS(J): 8.755 * S(3,J)) <= DISPONIBILIDADLECHE;
+@SUM(PLANTAS(J): 8.755 * S(3,J)) <= DISPONIBILIDAD_LECHE;
 
 !3 - Definición de L(j) para j en {1,2} - VER COMO RESTRINGIR;
 @FOR(PLANTAS(J):
