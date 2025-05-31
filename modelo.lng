@@ -65,9 +65,9 @@ COSTO_ENVIO_SANTA_FE = 20;
 CONVERSION_LECHE_ENTERA = 1.063; 
 CONVERSION_LECHE_DESCREMADA = 1.063;
 CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA = 8.755;
-CONVERSION_LECHE_EN_POLVO_DESCREMADA = 12.25;
-CONVERSION_CREMA = 12.5;
-CONVERSION_MANTECA = 34.72;
+CONVERSION_LECHE_DESNATADA = 11.525;
+CONVERSION_CREMA = 0.08;
+CONVERSION_CREMA_MANTECA = 2.77;
 
 ENDDATA
 
@@ -75,7 +75,6 @@ ENDDATA
 [FO] MIN = @SUM(PRODUCTOS(I): @SUM(PLANTAS(J): @SUM(CENTROS(K): FACTOR_REFRIGERACION_PRODUCTO(I) * COSTO_TRANSPORTE(J,K) * Q(I,J,K) * 1/1000))) + COSTO_ENVIO_SANTA_FE * @SUM(PLANTAS(J): LITROS_LECHE_DESCREMADA_SANTA_FE(J));
 
 !1 - Satisfacción mínima de demanda por producto y centro;
-!TODO: Chequear la sintaxis de los demas @FOR anidados para que sea como la siguiente:;
 @FOR(PRODUCTOS(I): 
     @FOR(CENTROS(K): 
         @SUM(PLANTAS(J): Q(I,J,K)) >= FRACCION_DEMANDA_CENTRO(K) * DEMANDA_PRODUCTO(I)
@@ -83,50 +82,65 @@ ENDDATA
 );
 
 !2 - Restricción de disponibilidad total de leche cruda;
+! TODO: 
+Primero dicen para todo i,j, pero luego hacen la sumatoria en j y i le fijan valores. 
+    Si voy a fijar valores, entonces no es para todo i. Si hago una sumatoria, entonces no es para todo j. 
+    Si digo que es para todo i,j digo que esta restricción se repite para cada combinación de (i,j) posible. 
+    Pero no es lo que están queriendo decir. Me explico? Para todo i,j no va.;
 @SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_ENTERA * Q(1,J,K))) +
-@SUM(PLANTAS(J): CONVERSION_LECHE_ENTERA * LITROS_ENTERA_A_DESCREMADA(J)) +
+@SUM(PLANTAS(J): CONVERSION_LECHE_DESCREMADA * LITROS_ENTERA_A_DESCREMADA(J)) +
 @SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * Q(3,J,K))) +
 @SUM(PLANTAS(J): CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * S(3,J)) <= DISPONIBILIDAD_LECHE;
 
-!3 - Definición de LITROS_ENTERA_A_DESCREMADA - L[j] para j en {1,2} - VER COMO RESTRINGIR;
-! TODO: Remover número magico 11.525 (en tablas hay un dato de 12.25, que es el asignado arriba);
+!3 - Definición de LITROS_ENTERA_A_DESCREMADA - L[j] para j en {1,2};
 @FOR(PLANTAS(J):
     LITROS_ENTERA_A_DESCREMADA(J) = 
         @SUM(CENTROS(K): Q(2,J,K)) +
         LITROS_LECHE_DESCREMADA_SANTA_FE(J) +
-        11.525 * @SUM(CENTROS(K): Q(4,J,K)) -
-        11.525 * S(4,J)
+        CONVERSION_LECHE_DESNATADA * @SUM(CENTROS(K): Q(4,J,K)) +
+        CONVERSION_LECHE_DESNATADA * S(4,J)
 );
 
 !4 - Cantidad de leche desnatada en la planta 4;
-! TODO: Remover número magico 11.525 (en tablas hay un dato de 12.25, que es el asignado arriba. Verificar si es el que hay que usar)(Es otro auxiliar que tuvimos que calcular, por nuestra definicion de variables);
+! TODO: Entiendo que esta restricción sea solo para Santa Fe y esta bien poner para todo j=3, eso es correcto.
+    Lo que me hace ruido es que la variable Mj esta sumando en j, entonces se ve rara la restricción.
+    Se me ocurren dos opciones: a. Pueden poner en la sumatoria j=1 y arriba del signo de sumatoria 2 (para que la suma sea entre j={1,2}) o b. Llamar j' 
+    a la j que esta dentro de la sumatoria, entonces sería sumatoria j' de Mj' - ...(todo lo que sigue igual como esta) para diferenciar que las j que se
+    suman no es la j que se fija. No se si me explico bien. La opción b es la que yo usaría, pero si la hacen como a lo considero bien también.;
 @SUM(PLANTAS(J): LITROS_LECHE_DESCREMADA_SANTA_FE(J)) - 
 @SUM(CENTROS(K): Q(2,3,K)) - 
-11.525 * S(4,3) = 0;
+CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
 !5 - Crema - subproducto Cj para j en {1,2} - VER COMO RESTRINGIR;
+! TODO: Pueden reemplazar Cj por la expresión de la restricción 6 y se ahorran una restricción. ;
 @FOR(PLANTAS(JJ):
-    LITROS_CREMA(JJ) = 0.08 * LITROS_ENTERA_A_DESCREMADA(JJ)
+    LITROS_CREMA(JJ) = CONVERSION_CREMA * LITROS_ENTERA_A_DESCREMADA(JJ)
 );
 
 !6 - Definición de LITROS_CREMA C[j] como función de productos 5 y 6 enviados desde planta j={1,2};
+! TODO: Cuidado con la igualdad. Esto significa que toda la crema que sale de la desnatadora debe ser usada para algún producto,
+ya sea crema o manteca. Si tengo mas crema de la que necesito para cubrir la demanda de ambos productos tengo que enviar si o si
+productos de mas, y eso me implica mas costos y peor valor de la función objetivo. Puede que tenga crema de mas o puede que no.
+SI quieren dejarlo así déjenlo, pero después analicen el resultado que les da.;
 @FOR(PLANTAS(JJ):
     LITROS_CREMA(JJ) = 
         @SUM(CENTROS(K): Q(5,JJ,K)) + 
-        2.77 * @SUM(CENTROS(K): Q(6,JJ,K))
+        CONVERSION_CREMA_MANTECA * @SUM(CENTROS(K): Q(6,JJ,K))
 );
 
 !7 - Restricción de disponibilidad de leche entera en plantas 1 y 2 - VER COMO RESTRINGIR;;
+! TODO: estan considerando todos los productos, consideren solo los relacionados a leche fluida (entera, descremada y enviada a Santa Fe);
 @FOR(PLANTAS(JJ):
     @SUM(CENTROS(K): Q(1,JJ,K)) +
     LITROS_ENTERA_A_DESCREMADA(JJ) +
-    11.525 * (
+    CONVERSION_LECHE_DESNATADA * (
         @SUM(CENTROS(K): Q(3,JJ,K)) + 
         S(3,JJ)
     ) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(1,JJ)
 );
 
 !8 - Restricción de disponibilidad de leche cruda para planta 3;
+! TODO: similar a la observación del punto anterior. Consideren solo la leche fluida entera;
 @SUM(CENTROS(K): Q(1,3,K)) +
 CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
     @SUM(CENTROS(K): Q(3,3,K)) +
@@ -135,6 +149,7 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
 
 
 !9 - Restricción de capacidad del subproducto Cj para j en {1,2} - VER COMO RESTRINGIR;
+! TODO: Consideren solo la crema que distribuyen, no toda la que sale de la desnatadora.;
 @FOR(PLANTAS(JJ):
     LITROS_CREMA(JJ) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(3,JJ)
 );
@@ -145,17 +160,25 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
 );
 
 !11 - Cantidad de leche en polvo producida en las plantas;
+! TODO: cuando dicen " i = {3,4} " hacen referencia a los indicen que se están sumando, pónganlos en el signo de sumatoria. Además, Q también debería estar sumando en i;
 @FOR(PLANTAS(JJ):
-    @SUM(PRODUCTOS(I): S(I,JJ)) +
-    @SUM(CENTROS(K): @SUM(PRODUCTOS(I): Q(I,JJ,K)))<= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(2,JJ));
+    @SUM(PRODUCTOS(I): S(I,JJ)) + @SUM(CENTROS(K): @SUM(PRODUCTOS(I): Q(I,JJ,K)))<= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(2,JJ)
+);
 
 !12 - Restricciones no negatividad;
-@FOR(PRODUCTOS(II): @FOR(PLANTAS(JJ):@FOR(CENTROS(K):
-    Q(II,JJ,K) >= 0
-)));
+! TODO: Faltan variables, como Mj, Lj, Cj y no se si alguna mas.;
+@FOR(PRODUCTOS(II):
+    @FOR(PLANTAS(JJ):
+        @FOR(CENTROS(K):
+            Q(II,JJ,K) >= 0
+        )
+    )
+);
 
-@FOR(PLANTAS(JJ):@FOR(PRODUCTOS(II):
-     S(II,JJ) >= 0
-    ));
+@FOR(PLANTAS(JJ):
+    @FOR(PRODUCTOS(II):
+        S(II,JJ) >= 0
+    )
+);
 
 
