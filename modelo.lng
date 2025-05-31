@@ -118,12 +118,8 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 );
 
 !6 - Definición de LITROS_CREMA C[j] como función de productos 5 y 6 enviados desde planta j={1,2};
-! TODO: Cuidado con la igualdad. Esto significa que toda la crema que sale de la desnatadora debe ser usada para algún producto,
-ya sea crema o manteca. Si tengo mas crema de la que necesito para cubrir la demanda de ambos productos tengo que enviar si o si
-productos de mas, y eso me implica mas costos y peor valor de la función objetivo. Puede que tenga crema de mas o puede que no.
-SI quieren dejarlo así déjenlo, pero después analicen el resultado que les da.;
 @FOR(PLANTAS(JJ):
-    LITROS_CREMA(JJ) = 
+    LITROS_CREMA(JJ) >= 
         @SUM(CENTROS(K): Q(5,JJ,K)) + 
         CONVERSION_CREMA_MANTECA * @SUM(CENTROS(K): Q(6,JJ,K))
 );
