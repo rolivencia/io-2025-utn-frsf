@@ -150,12 +150,18 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
     @SUM(CENTROS(K): @SUM(PRODUCTOS(I): Q(I,JJ,K)))<= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(2,JJ));
 
 !12 - Restricciones no negatividad;
-@FOR(PRODUCTOS(II): @FOR(PLANTAS(JJ):@FOR(CENTROS(K):
-    Q(II,JJ,K) >= 0
-)));
+@FOR(PRODUCTOS(II):
+    @FOR(PLANTAS(JJ):
+        @FOR(CENTROS(K):
+            Q(II,JJ,K) >= 0
+        )
+    )
+);
 
-@FOR(PLANTAS(JJ):@FOR(PRODUCTOS(II):
-     S(II,JJ) >= 0
-    ));
+@FOR(PLANTAS(JJ):
+    @FOR(PRODUCTOS(II):
+        S(II,JJ) >= 0
+    )
+);
 
 
