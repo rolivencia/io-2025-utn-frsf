@@ -27,10 +27,9 @@ SETS:
     STOCK(PRODUCTOS, PLANTAS): S;                     
     !cantidad de producto i producido en j destinado a k;
     CANTIDAD_PRODUCTO(PRODUCTOS, PLANTAS, CENTROS): Q;
+!Conjuntos de datos a utilizar;
     ! Relación planta-centro: distancia y costo base transporte;
     PLXCN(PLANTAS, CENTROS): DISTANCIA, COSTO_TRANSPORTE;    
-
-!Conjuntos de datos a utilizar;
     ! Subconjunto para productos con capacidad (Leches fluidas agrupadas y leches en polvo agrupadas);
     PRODUCTOSAUX /1..4/;                       
     ! Capacidad de producción por planta para productos agrupados;
@@ -113,6 +112,7 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
 !5 - Crema - subproducto Cj para j en {1,2} - VER COMO RESTRINGIR;
 ! TODO: Pueden reemplazar Cj por la expresión de la restricción 6 y se ahorran una restricción. ;
+! RO - Se puede utilizar la expresión del lado derecho de la igualdad para reemplazar el lado izquierdo de la desigualdad de la restricción 6;
 @FOR(PLANTAS(JJ):
     LITROS_CREMA(JJ) = CONVERSION_CREMA * LITROS_ENTERA_A_DESCREMADA(JJ)
 );
@@ -161,8 +161,19 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
     @SUM(PRODUCTOS(I): S(I,JJ)) + @SUM(CENTROS(K): @SUM(PRODUCTOS(I): Q(I,JJ,K)))<= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(2,JJ)
 );
 
-!12 - Restricciones no negatividad;
-! TODO: Faltan variables, como Mj, Lj, Cj y no se si alguna mas.;
+!12 - Restricciones de no negatividad;
+@FOR(PLANTAS(JJ):
+    LITROS_LECHE_DESCREMADA_SANTA_FE(JJ) >= 0
+);
+
+@FOR(PLANTAS(JJ):
+    LITROS_ENTERA_A_DESCREMADA(JJ) >= 0
+);
+
+@FOR(PLANTAS(JJ):
+    LITROS_CREMA(JJ) >= 0
+);
+
 @FOR(PRODUCTOS(II):
     @FOR(PLANTAS(JJ):
         @FOR(CENTROS(K):
@@ -176,5 +187,7 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
         S(II,JJ) >= 0
     )
 );
+
+
 
 
