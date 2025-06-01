@@ -91,8 +91,8 @@ Primero dicen para todo i,j, pero luego hacen la sumatoria en j y i le fijan val
 @SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * Q(3,J,K))) +
 @SUM(PLANTAS(J): CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * S(3,J)) <= DISPONIBILIDAD_LECHE;
 
-!3 - Definición de LITROS_ENTERA_A_DESCREMADA - L[j] para j en {1,2};
-@FOR(PLANTAS(J):
+!3 - Definición de LITROS_ENTERA_A_DESCREMADA - L[j] en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
+@FOR(PLANTAS(J) | J #NE# 3:
     LITROS_ENTERA_A_DESCREMADA(J) = 
         @SUM(CENTROS(K): Q(2,J,K)) +
         LITROS_LECHE_DESCREMADA_SANTA_FE(J) +
@@ -110,17 +110,16 @@ Primero dicen para todo i,j, pero luego hacen la sumatoria en j y i le fijan val
 @SUM(CENTROS(K): Q(2,3,K)) - 
 CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
-!5 - Crema - subproducto Cj para j en {1,2} - VER COMO RESTRINGIR;
-! TODO: Pueden reemplazar Cj por la expresión de la restricción 6 y se ahorran una restricción. ;
-! RO - Se puede utilizar la expresión del lado derecho de la igualdad para reemplazar el lado izquierdo de la desigualdad de la restricción 6;
-@FOR(PLANTAS(JJ) | JJ #LT# 3:
+!5 - - Definición de LITROS_CREMA C[j] producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
+! Ramiro: Se puede utilizar la expresión del lado derecho de la igualdad para reemplazar el lado izquierdo de la desigualdad de la restricción 6;
+@FOR(PLANTAS(JJ) | JJ #NE# 3:
     LITROS_CREMA(JJ) = CONVERSION_CREMA * LITROS_ENTERA_A_DESCREMADA(JJ)
 );
 
-! 6 - Definición del subproducto crema producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
+! 6 - Restricción del subproducto crema utilizado para venta directa y producción de manteca en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! La cantidad de crema producida en las plantas j=1 y j=2 debe ser mayor o igual que la cantidad de 
 ! crema vendida como producto y usada como subproducto para producir manteca;
-@FOR(PLANTAS(JJ) | JJ #LT# 3:
+@FOR(PLANTAS(JJ) | JJ #NE# 3:
     LITROS_CREMA(JJ) >= 
         @SUM(CENTROS(K): Q(5,JJ,K)) + 
         CONVERSION_CREMA_MANTECA * @SUM(CENTROS(K): Q(6,JJ,K))
@@ -128,7 +127,7 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
 !7 - Restricción de disponibilidad de leche entera en plantas 1 y 2;
 ! TODO: estan considerando todos los productos, consideren solo los relacionados a leche fluida (entera, descremada y enviada a Santa Fe);
-@FOR(PLANTAS(JJ) | JJ #LT# 3:
+@FOR(PLANTAS(JJ) | JJ #NE# 3:
     @SUM(CENTROS(K): Q(1,JJ,K)) +
     LITROS_ENTERA_A_DESCREMADA(JJ) +
     CONVERSION_LECHE_DESNATADA * (
@@ -148,14 +147,14 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
 ! 9 - Restricción del subproducto crema producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! La capacidad máxima de producto agrupado de índice 3 corresponde a la capacidad de producción 
 ! de crema para las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
-@FOR(PLANTAS(JJ) | JJ #LT# 3:
+@FOR(PLANTAS(JJ) | JJ #NE# 3:
     LITROS_CREMA(JJ) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(3,JJ)
 );
 
 ! 10 - Restricción de capacidad para producto i=6 (manteca) en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! La capacidad máxima de producto agrupado de índice 4 corresponde a la capacidad de producción 
 ! de manteca para las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
-@FOR(PLANTAS(JJ) | JJ #LT# 3:
+@FOR(PLANTAS(JJ) | JJ #NE# 3:
     @SUM(CENTROS(K): Q(6,JJ,K)) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(4,JJ)
 );
 
@@ -194,6 +193,9 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
         S(II,JJ) >= 0
     )
 );
+
+
+
 
 
 
