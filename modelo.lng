@@ -113,7 +113,7 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 !5 - Crema - subproducto Cj para j en {1,2} - VER COMO RESTRINGIR;
 ! TODO: Pueden reemplazar Cj por la expresión de la restricción 6 y se ahorran una restricción. ;
 ! RO - Se puede utilizar la expresión del lado derecho de la igualdad para reemplazar el lado izquierdo de la desigualdad de la restricción 6;
-@FOR(PLANTAS(JJ):
+@FOR(PLANTAS(JJ | J #LT# 3):
     LITROS_CREMA(JJ) = CONVERSION_CREMA * LITROS_ENTERA_A_DESCREMADA(JJ)
 );
 
