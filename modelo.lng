@@ -100,14 +100,16 @@ Primero dicen para todo i,j, pero luego hacen la sumatoria en j y i le fijan val
         CONVERSION_LECHE_DESNATADA * S(4,J)
 );
 
-!4 - Cantidad de leche desnatada en la planta 4;
-! TODO: Entiendo que esta restricción sea solo para Santa Fe y esta bien poner para todo j=3, eso es correcto.
-    Lo que me hace ruido es que la variable Mj esta sumando en j, entonces se ve rara la restricción.
-    Se me ocurren dos opciones: a. Pueden poner en la sumatoria j=1 y arriba del signo de sumatoria 2 (para que la suma sea entre j={1,2}) o b. Llamar j' 
-    a la j que esta dentro de la sumatoria, entonces sería sumatoria j' de Mj' - ...(todo lo que sigue igual como esta) para diferenciar que las j que se
-    suman no es la j que se fija. No se si me explico bien. La opción b es la que yo usaría, pero si la hacen como a lo considero bien también.;
-@SUM(PLANTAS(J): LITROS_LECHE_DESCREMADA_SANTA_FE(J)) - 
-@SUM(CENTROS(K): Q(2,3,K)) - 
+! 4 - Cantidad de leche desnatada en la planta j = 3 (Santa Fe);
+! Esta restricción expresa que toda la leche desnatada utilizada en la planta j = 3 (Santa Fe) debe provenir
+! de las plantas j=1 (Buenos Aires) o j=2 (Córdoba). 
+!
+! El primer término indica la suma de la leche desnatada  proveniente de j en {1,2} y los tres términos restantes balancean 
+! esta producción con lo redistribuido desde la planta j = 3 (Santa Fe) para utilizar como i = 2 (leche descremada fluida),
+! i = 4 (leche en polvo descremada) y por último con el stock de leche en polvo almacenada S(4,3);
+@SUM(PLANTAS(J) | J #NE# 3: LITROS_LECHE_DESCREMADA_SANTA_FE(J)) - 
+@SUM(CENTROS(K): Q(2,3,K)) -
+@SUM(CENTROS(K): Q(4,3,K)) - 
 CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
 !5 - - Definición de LITROS_CREMA C[j] producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
@@ -193,10 +195,3 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
         S(II,JJ) >= 0
     )
 );
-
-
-
-
-
-
-
