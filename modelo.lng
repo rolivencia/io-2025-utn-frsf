@@ -117,8 +117,10 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
     LITROS_CREMA(JJ) = CONVERSION_CREMA * LITROS_ENTERA_A_DESCREMADA(JJ)
 );
 
-!6 - Definición de LITROS_CREMA C[j] como función de productos 5 y 6 enviados desde planta j={1,2};
-@FOR(PLANTAS(JJ):
+! 6 - Definición del subproducto crema producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
+! La cantidad de crema producida en las plantas j=1 y j=2 debe ser mayor o igual que la cantidad de 
+! crema vendida como producto y usada como subproducto para producir manteca;
+@FOR(PLANTAS(JJ | J #LT# 3):
     LITROS_CREMA(JJ) >= 
         @SUM(CENTROS(K): Q(5,JJ,K)) + 
         CONVERSION_CREMA_MANTECA * @SUM(CENTROS(K): Q(6,JJ,K))
