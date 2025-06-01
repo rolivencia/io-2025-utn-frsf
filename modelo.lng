@@ -170,7 +170,8 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
 );
 
 ! 12 - Restricciones de no negatividad;
-! 1. Los valores de producción de Q(i,j,k) deben ser no negativos;
+! 12.1. Los valores de producción de Q(i,j,k) deben ser no negativos. Para el caso de la planta j=3 (Santa Fe), 
+! ademásse restringen a cero los valores de producción de los productos i=5 (crema) e i=6 (manteca);
 @FOR(PRODUCTOS(II):
     @FOR(PLANTAS(JJ):
         @FOR(CENTROS(K):
@@ -179,40 +180,47 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
     )
 );
 
+@FOR(PRODUCTOS(II) | II #EQ# 5 #OR# II #EQ# 6:
+    @FOR(CENTROS(K):
+        Q(II,3,K) = 0
+    )
+);
+
 ! TODO: Agregar restricciones de producción de la planta j = 3 (Santa Fe), donde algunos productos no se producen;
 
-! 2. Los valores de stock de productos i en las plantas j, S(i,j), para i en {3,4}, deben ser no negativos
+! 12.2. Los valores de stock de productos i en las plantas j, S(i,j), para i en {3,4}, deben ser no negativos
 ! y deben ser cero para el caso de los productos diferentes de este conjunto;
-@FOR(PLANTAS(JJ):
-    @FOR(PRODUCTOS(II) | II #EQ# 3..4:
+@FOR(PLANTAS(JJ) | JJ #NE# 3 #AND# JJ #NE# 4:
+    @FOR(PRODUCTOS(II):
         S(II,JJ) >= 0
     )
 );
 
-@FOR(PLANTAS(JJ):
-    @FOR(PRODUCTOS(II) | II #NE# 3..4:
+@FOR(PLANTAS(JJ) | JJ #EQ# 3 #OR# JJ #EQ# 4:
+    @FOR(PRODUCTOS(II):
         S(II,JJ) = 0
     )
 );
 
-! 3. La cantidad de litros de leche descremada enviados desde las otras plantas a Santa Fe, M[j], para j en {1,2}, 
-! deben ser no negativos. Para el caso de la planta j = 3 (Santa Fe), se restringe a cero;
-@FOR(PLANTAS(JJ) | JJ #EQ# 1..2:
+! 12.3. La cantidad de litros de leche descremada enviados desde las otras plantas a Santa Fe, M[j], para j en {1,2}, 
+! deben ser no negativos. Para el caso de la planta j = 3 (Santa Fe), se restringe a cero dado que es redundante 
+! enviar leche descremada desde la misma planta;
+@FOR(PLANTAS(JJ):
     LITROS_LECHE_DESCREMADA_SANTA_FE(JJ) >= 0
 );
-LITROS_LECHE_DESCREMADA_SANTA_FE(3) = 0
+LITROS_LECHE_DESCREMADA_SANTA_FE(3) = 0;
 
-! 4. La cantidad de litros de leche entera destinada a la leche descremada para las plantas j = {1,2}, L[j], 
-! deben ser no negativos. Para la planta j = 3 (Santa Fe), se restringe a cero ya que no produce leche descremada y la 
+! 12.4. La cantidad de litros de leche entera destinada a la leche descremada para las plantas j = {1,2}, L[j], 
+! deben ser no negativos. Para la planta j = 3 (Santa Fe), además se restringe a cero ya que no produce leche desnatada y la 
 ! recibe de las plantas j = {1,2};
-@FOR(PLANTAS(JJ) | JJ #EQ# 1..2:
+@FOR(PLANTAS(JJ):
     LITROS_ENTERA_A_DESCREMADA(JJ) >= 0
 );
-LITROS_ENTERA_A_DESCREMADA(3) = 0
+LITROS_ENTERA_A_DESCREMADA(3) = 0;
 
-! 5. La cantidad de litros de crema producidos por las plantas j = {1,2}, C[j], deben ser no negativos.
-! Para la planta j = 3 (Santa Fe), se restringe a cero ya que no se produce crema en dicha planta.;
-@FOR(PLANTAS(JJ) | JJ #EQ# 1..2:
+! 12.5. La cantidad de litros de crema producidos por las plantas j = {1,2}, C[j], deben ser no negativos.
+! Para la planta j = 3 (Santa Fe), además se restringe a cero ya que no se produce crema en dicha planta.;
+@FOR(PLANTAS(JJ):
     LITROS_CREMA(JJ) >= 0
 );
-LITROS_CREMA(3) = 0
+LITROS_CREMA(3) = 0;
