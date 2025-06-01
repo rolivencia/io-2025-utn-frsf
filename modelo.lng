@@ -151,6 +151,8 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
 );
 
 !10 - Restricción de capacidad para producto i=6 (manteca) en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
+! La capacidad máxima de producto agrupado de índice 4 corresponde a la capacidad de producción 
+! de manteca para las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 @SUM(CENTROS(K): Q(6,1,K)) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(4,1);
 @SUM(CENTROS(K): Q(6,2,K)) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(4,2);
 
