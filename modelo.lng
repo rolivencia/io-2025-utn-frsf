@@ -186,8 +186,6 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
     )
 );
 
-! TODO: Agregar restricciones de producción de la planta j = 3 (Santa Fe), donde algunos productos no se producen;
-
 ! 12.2. Los valores de stock de productos i en las plantas j, S(i,j), para i en {3,4}, deben ser no negativos
 ! y deben ser cero para el caso de los productos diferentes de este conjunto;
 @FOR(PLANTAS(JJ) | JJ #NE# 3 #AND# JJ #NE# 4:
