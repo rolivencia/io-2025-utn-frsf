@@ -155,13 +155,16 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
     @SUM(CENTROS(K): Q(6,JJ,K)) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(4,JJ)
 );
 
-!11 - Cantidad de leche en polvo producida en las plantas;
-! TODO: cuando dicen " i = {3,4} " hacen referencia a los indicen que se están sumando, pónganlos en el signo de sumatoria. Además, Q también debería estar sumando en i;
+! 11 - Cantidad de leche en polvo producida en las plantas;
+! Se calcula para los productos i=3 (leche en polvo entera) e i=4 (leche en polvo descremada)
+! La capacidad máxima de producto agrupado de índice 2 corresponde a la capacidad de producción 
+! de leche en polvo para cada planta;
 @FOR(PLANTAS(JJ):
-    @SUM(PRODUCTOS(I): S(I,JJ)) + @SUM(CENTROS(K): @SUM(PRODUCTOS(I): Q(I,JJ,K)))<= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(2,JJ)
+    S(3,JJ)) + S(4,JJ) + 
+    @SUM(CENTROS(K): (Q(3,JJ,K) + Q(4,JJ,K))) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(2,JJ)
 );
 
-!12 - Restricciones de no negatividad;
+! 12 - Restricciones de no negatividad;
 @FOR(PLANTAS(JJ):
     LITROS_LECHE_DESCREMADA_SANTA_FE(JJ) >= 0
 );
