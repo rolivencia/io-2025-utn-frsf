@@ -146,8 +146,8 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
 ! 9 - Restricción del subproducto crema producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! La capacidad máxima de producto agrupado de índice 3 corresponde a la capacidad de producción 
 ! de crema para las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
-LITROS_CREMA(1) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(3,1)
-LITROS_CREMA(2) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(3,2)
+LITROS_CREMA(1) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(3,1);
+LITROS_CREMA(2) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(3,2);
 
 ! 10 - Restricción de capacidad para producto i=6 (manteca) en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! La capacidad máxima de producto agrupado de índice 4 corresponde a la capacidad de producción 
