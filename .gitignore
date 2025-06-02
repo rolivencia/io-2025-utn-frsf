@@ -1,1 +1,2 @@
-modelo.log
+# Ignore log files
+*.log
