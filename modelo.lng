@@ -61,9 +61,8 @@ COSTO_ENVIO_SANTA_FE = 20;
 
 !  Factor de conversión de litros de leche cruda a cantidades de productos;
 !  1 unidad de producto = X cantidad de litros de leche cruda;
-CONVERSION_LECHE_ENTERA = 1.063; 
-CONVERSION_LECHE_DESCREMADA = 1.063;
-CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA = 8.755;
+CONVERSION_LECHE_FLUIDA = 1.063; 
+CONVERSION_LECHE_EN_POLVO = 8.755;
 CONVERSION_LECHE_DESNATADA = 11.525;
 CONVERSION_CREMA = 0.08;
 CONVERSION_CREMA_MANTECA = 2.77;
@@ -78,26 +77,6 @@ ENDDATA
     @FOR(CENTROS(K): 
         @SUM(PLANTAS(J): Q(I,J,K)) >= FRACCION_DEMANDA_CENTRO(K) * DEMANDA_PRODUCTO(I)
     )
-);
-
-!2 - Restricción de disponibilidad total de leche cruda;
-! TODO: 
-Primero dicen para todo i,j, pero luego hacen la sumatoria en j y i le fijan valores. 
-    Si voy a fijar valores, entonces no es para todo i. Si hago una sumatoria, entonces no es para todo j. 
-    Si digo que es para todo i,j digo que esta restricción se repite para cada combinación de (i,j) posible. 
-    Pero no es lo que están queriendo decir. Me explico? Para todo i,j no va.;
-@SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_ENTERA * Q(1,J,K))) +
-@SUM(PLANTAS(J): CONVERSION_LECHE_DESCREMADA * LITROS_ENTERA_A_DESCREMADA(J)) +
-@SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * Q(3,J,K))) +
-@SUM(PLANTAS(J): CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * S(3,J)) <= DISPONIBILIDAD_LECHE;
-
-!3 - Definición de LITROS_ENTERA_A_DESCREMADA - L[j] en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
-@FOR(PLANTAS(J) | J #NE# 3:
-    LITROS_ENTERA_A_DESCREMADA(J) = 
-        @SUM(CENTROS(K): Q(2,J,K)) +
-        LITROS_LECHE_DESCREMADA_SANTA_FE(J) +
-        CONVERSION_LECHE_DESNATADA * @SUM(CENTROS(K): Q(4,J,K)) +
-        CONVERSION_LECHE_DESNATADA * S(4,J)
 );
 
 ! 4 - Cantidad de leche desnatada en la planta j = 3 (Santa Fe);
@@ -141,7 +120,7 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 !8 - Restricción de disponibilidad de leche cruda para planta 3;
 ! TODO: similar a la observación del punto anterior. Consideren solo la leche fluida entera;
 @SUM(CENTROS(K): Q(1,3,K)) +
-CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
+CONVERSION_LECHE_EN_POLVO * (
     @SUM(CENTROS(K): Q(3,3,K)) +
     S(3,3)
 ) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(1,3);
@@ -188,15 +167,15 @@ CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
 
 ! 12.2. Los valores de stock de productos i en las plantas j, S(i,j), para i en {3,4}, deben ser no negativos
 ! y deben ser cero para el caso de los productos diferentes de este conjunto;
-@FOR(PLANTAS(JJ) | JJ #NE# 3 #AND# JJ #NE# 4:
-    @FOR(PRODUCTOS(II):
-        S(II,JJ) >= 0
+@FOR(PLANTAS(JJ):
+    @FOR(PRODUCTOS(II) | II #NE# 3 #AND# II #NE# 4:
+        S(II,JJ) = 0
     )
 );
 
-@FOR(PLANTAS(JJ) | JJ #EQ# 3 #OR# JJ #EQ# 4:
-    @FOR(PRODUCTOS(II):
-        S(II,JJ) = 0
+@FOR(PLANTAS(JJ):
+    @FOR(PRODUCTOS(II) | II #EQ# 3 #OR# II #EQ# 4:
+        S(II,JJ) >= 0
     )
 );
 
@@ -222,3 +201,4 @@ LITROS_ENTERA_A_DESCREMADA(3) = 0;
     LITROS_CREMA(JJ) >= 0
 );
 LITROS_CREMA(3) = 0;
+
