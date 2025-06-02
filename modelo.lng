@@ -80,6 +80,11 @@ ENDDATA
 );
 
 !2 - Restricción de disponibilidad total de leche cruda;
+! TODO: 
+Primero dicen para todo i,j, pero luego hacen la sumatoria en j y i le fijan valores. 
+    Si voy a fijar valores, entonces no es para todo i. Si hago una sumatoria, entonces no es para todo j. 
+    Si digo que es para todo i,j digo que esta restricción se repite para cada combinación de (i,j) posible. 
+    Pero no es lo que están queriendo decir. Me explico? Para todo i,j no va.;
 @SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_ENTERA * Q(1,J,K))) +
 @SUM(PLANTAS(J) | J #NE# 3: CONVERSION_LECHE_DESCREMADA * LITROS_ENTERA_A_DESCREMADA(J)) +
 @SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * Q(3,J,K))) +
