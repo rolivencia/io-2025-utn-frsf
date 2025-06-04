@@ -62,8 +62,7 @@ COSTO_ENVIO_SANTA_FE = 20;
 
 !  Factor de conversión de litros de leche cruda a cantidades de productos;
 !  1 unidad de producto = X cantidad de litros de leche cruda;
-CONVERSION_LECHE_ENTERA = 1.063; 
-CONVERSION_LECHE_DESCREMADA = 1.063;
+CONVERSION_LECHE_FLUIDA = 1.063; 
 CONVERSION_LECHE_EN_POLVO = 8.755;
 CONVERSION_LECHE_DESNATADA = 11.525;
 CONVERSION_CREMA = 0.08;
@@ -138,7 +137,7 @@ SI quieren dejarlo así déjenlo, pero después analicen el resultado que les da
 !8 - Restricción de disponibilidad de leche cruda para planta 3;
 ! TODO: similar a la observación del punto anterior. Consideren solo la leche fluida entera;
 @SUM(CENTROS(K): Q(1,3,K)) +
-CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * (
+CONVERSION_LECHE_EN_POLVO * (
     @SUM(CENTROS(K): Q(3,3,K)) +
     S(3,3)
 ) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(1,3);
