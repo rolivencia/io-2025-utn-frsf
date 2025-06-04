@@ -74,24 +74,20 @@ ENDDATA
 
 !1 - Satisfacción mínima de demanda por producto y centro;
 @FOR(PRODUCTOS(I): 
-    @FOR(CENTROS(K): 
+    @FOR(CENTROS(K): [DEMANDA_PRODUCTO_I_CENTRO_K]
         @SUM(PLANTAS(J): Q(I,J,K)) >= FRACCION_DEMANDA_CENTRO(K) * DEMANDA_PRODUCTO(I)
     )
 );
 
 !2 - Restricción de disponibilidad total de leche cruda;
-! TODO: 
-Primero dicen para todo i,j, pero luego hacen la sumatoria en j y i le fijan valores. 
-    Si voy a fijar valores, entonces no es para todo i. Si hago una sumatoria, entonces no es para todo j. 
-    Si digo que es para todo i,j digo que esta restricción se repite para cada combinación de (i,j) posible. 
-    Pero no es lo que están queriendo decir. Me explico? Para todo i,j no va.;
-@SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_ENTERA * Q(1,J,K))) +
-@SUM(PLANTAS(J) | J #NE# 3: CONVERSION_LECHE_DESCREMADA * LITROS_ENTERA_A_DESCREMADA(J)) +
-@SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * Q(3,J,K))) +
-@SUM(PLANTAS(J): CONVERSION_LECHE_EN_POLVO_ENTERA_Y_SEMIDESCREMADA * S(3,J)) <= DISPONIBILIDAD_LECHE;
+[DISPONIBILIDAD_LECHE_CRUDA]
+@SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_FLUIDA * Q(1,J,K))) +
+@SUM(PLANTAS(J) | J #NE# 3: CONVERSION_LECHE_FLUIDA * LITROS_ENTERA_A_DESCREMADA(J)) +
+@SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_EN_POLVO * Q(3,J,K))) +
+@SUM(PLANTAS(J): CONVERSION_LECHE_EN_POLVO * S(3,J)) <= DISPONIBILIDAD_LECHE;
 
 !3 - Definición de LITROS_ENTERA_A_DESCREMADA - L[j] en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
-@FOR(PLANTAS(J) | J #NE# 3:
+@FOR(PLANTAS(J) | J #NE# 3: [ENTERA_A_DESCREMADA_PLANTA_J_]
     LITROS_ENTERA_A_DESCREMADA(J) = 
         @SUM(CENTROS(K): Q(2,J,K)) +
         LITROS_LECHE_DESCREMADA_SANTA_FE(J) +
@@ -106,6 +102,7 @@ Primero dicen para todo i,j, pero luego hacen la sumatoria en j y i le fijan val
 ! El primer término indica la suma de la leche desnatada  proveniente de j en {1,2} y los tres términos restantes balancean 
 ! esta producción con lo redistribuido desde la planta j = 3 (Santa Fe) para utilizar como i = 2 (leche descremada fluida),
 ! i = 4 (leche en polvo descremada) y por último con el stock de leche en polvo almacenada S(4,3);
+[DESCREMADA_SANTA_FE]
 @SUM(PLANTAS(J) | J #NE# 3: LITROS_LECHE_DESCREMADA_SANTA_FE(J)) - 
 @SUM(CENTROS(K): Q(2,3,K)) -
 @SUM(CENTROS(K): Q(4,3,K)) - 
@@ -113,41 +110,42 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
 !5 - - Definición de LITROS_CREMA C[j] producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! Si bien podemos agrupar las restricciones 5 y 6, utilizamos esta definición para hacer más sencilla la definición de la restricción #9;
-@FOR(PLANTAS(JJ) | JJ #NE# 3:
+@FOR(PLANTAS(JJ) | JJ #NE# 3: [CREMA_PRODUCIDA_PLANTA_J_]
     LITROS_CREMA(JJ) = CONVERSION_CREMA * LITROS_ENTERA_A_DESCREMADA(JJ)
 );
 
 ! 6 - Restricción del subproducto crema utilizado para venta directa y producción de manteca en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! La cantidad de crema producida en las plantas j=1 y j=2 debe ser mayor o igual que la cantidad de 
 ! crema vendida como producto y usada como subproducto para producir manteca;
-@FOR(PLANTAS(JJ) | JJ #NE# 3:
+@FOR(PLANTAS(JJ) | JJ #NE# 3: [MANTECA_PRODUCIDA_PLANTA_J_]
     LITROS_CREMA(JJ) >= 
         @SUM(CENTROS(K): Q(5,JJ,K)) + 
         CONVERSION_CREMA_MANTECA * @SUM(CENTROS(K): Q(6,JJ,K))
 );
 
 !7 - Restricción de disponibilidad de leche entera en plantas 1 y 2;
-@FOR(PLANTAS(JJ) | JJ #NE# 3:
+@FOR(PLANTAS(JJ) | JJ #NE# 3: [LECHE_ENTERA_PLANTA_J_]
 	@SUM(CENTROS(K): Q(1,JJ,K)) +
 	@SUM(CENTROS(K): Q(2,JJ,K)) +
 	LITROS_LECHE_DESCREMADA_SANTA_FE(JJ) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(1,JJ)
 );
 
-!8 - Restricción de disponibilidad de leche cruda para planta 3;
+!8 - Restricción de disponibilidad de leche fluida para planta 3;
+[DISPONIBILIDAD_LECHE_FLUIDA_SANTA_FE]
 @SUM(CENTROS(K): Q(1,3,K) + Q(2,3,K)) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(1,3);
 
 
 ! 9 - Restricción del subproducto crema producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! La capacidad máxima de producto agrupado de índice 3 corresponde a la capacidad de producción 
 ! de crema para las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
-@FOR(PLANTAS(JJ) | JJ #NE# 3:
+@FOR(PLANTAS(JJ) | JJ #NE# 3: [SUBPRODUCTO_CREMA_PLANTA_J_]
 	@SUM(CENTROS(K):Q(5,JJ,K)) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(3,JJ)
 );
 
 ! 10 - Restricción de capacidad para producto i=6 (manteca) en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! La capacidad máxima de producto agrupado de índice 4 corresponde a la capacidad de producción 
 ! de manteca para las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
-@FOR(PLANTAS(JJ) | JJ #NE# 3:
+@FOR(PLANTAS(JJ) | JJ #NE# 3: [SUBPRODUCTO_MANTECA_PLANTA_J_]
     @SUM(CENTROS(K): Q(6,JJ,K)) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(4,JJ)
 );
 
@@ -155,7 +153,7 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 ! Se calcula para los productos i=3 (leche en polvo entera) e i=4 (leche en polvo descremada)
 ! La capacidad máxima de producto agrupado de índice 2 corresponde a la capacidad de producción 
 ! de leche en polvo para cada planta;
-@FOR(PLANTAS(JJ):
+@FOR(PLANTAS(JJ): [EN_POLVO_J_]
     	S(3,JJ) + 
 	S(4,JJ) + 
     	@SUM(CENTROS(K): (Q(3,JJ,K) + Q(4,JJ,K))) <= CAPACIDAD_MAXIMA_PRODUCTOS_AGRUPADOS(2,JJ)
@@ -166,28 +164,28 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 ! ademásse restringen a cero los valores de producción de los productos i=5 (crema) e i=6 (manteca);
 @FOR(PRODUCTOS(II):
     @FOR(PLANTAS(JJ):
-        @FOR(CENTROS(K):
+        @FOR(CENTROS(K): [NO_NEGATIVA_Qijk]
             Q(II,JJ,K) >= 0
         )
     )
 );
 
 @FOR(PRODUCTOS(II) | II #EQ# 5 #OR# II #EQ# 6:
-    @FOR(CENTROS(K):
+    @FOR(CENTROS(K): [CERO_CREMA_MANTECA_SANTA_FE]
         Q(II,3,K) = 0
     )
 );
 
 ! 12.2. Los valores de stock de productos i en las plantas j, S(i,j), para i en {3,4}, deben ser no negativos
 ! y deben ser cero para el caso de los productos diferentes de este conjunto;
-@FOR(PLANTAS(JJ):
-    @FOR(PRODUCTOS(II) | II #NE# 3 #AND# II #NE# 4:
+@FOR(PLANTAS(JJ): 
+    @FOR(PRODUCTOS(II) | II #NE# 3 #AND# II #NE# 4: [NO_NEGATIVA_STOCK_EN_POLVO]
         S(II,JJ) = 0
     )
 );
 
 @FOR(PLANTAS(JJ):
-    @FOR(PRODUCTOS(II) | II #EQ# 3 #OR# II #EQ# 4:
+    @FOR(PRODUCTOS(II) | II #EQ# 3 #OR# II #EQ# 4: [CERO_STOCK_FLUIDA_CREMA_MANTECA]
         S(II,JJ) >= 0
     )
 );
@@ -195,22 +193,26 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 ! 12.3. La cantidad de litros de leche descremada enviados desde las otras plantas a Santa Fe, M[j], para j en {1,2}, 
 ! deben ser no negativos. Para el caso de la planta j = 3 (Santa Fe), se restringe a cero dado que es redundante 
 ! enviar leche descremada desde la misma planta;
-@FOR(PLANTAS(JJ):
+@FOR(PLANTAS(JJ): [NO_NEGATIVA_DESCREMADA_SANTA_FE]
     LITROS_LECHE_DESCREMADA_SANTA_FE(JJ) >= 0
 );
-LITROS_LECHE_DESCREMADA_SANTA_FE(3) = 0;
+[CERO_DESCREMADA_BUCLE_SANTA_FE]
+LITROS_LECHE_DESCREMADA_SANTA_FE(3) = 0; 
 
 ! 12.4. La cantidad de litros de leche entera destinada a la leche descremada para las plantas j = {1,2}, L[j], 
 ! deben ser no negativos. Para la planta j = 3 (Santa Fe), además se restringe a cero ya que no produce leche desnatada y la 
 ! recibe de las plantas j = {1,2};
-@FOR(PLANTAS(JJ):
+@FOR(PLANTAS(JJ): [NO_NEGATIVA_ENTERA_A_DESCREMADA]
     LITROS_ENTERA_A_DESCREMADA(JJ) >= 0
 );
+[CERO_ENTERA_DESCREMADA_BUCLE_SANTA_FE]
 LITROS_ENTERA_A_DESCREMADA(3) = 0;
 
 ! 12.5. La cantidad de litros de crema producidos por las plantas j = {1,2}, C[j], deben ser no negativos.
 ! Para la planta j = 3 (Santa Fe), además se restringe a cero ya que no se produce crema en dicha planta.;
-@FOR(PLANTAS(JJ):
+
+@FOR(PLANTAS(JJ): [NO_NEGATIVA_CREMA_PLANTA_J]
     LITROS_CREMA(JJ) >= 0
 );
+[CERO_CREMA_SANTA_FE]
 LITROS_CREMA(3) = 0;
