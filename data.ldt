@@ -24,4 +24,9 @@
 70000	90000	0 ~
 
 ! 7. DISPONIBILIDAD_LECHE (1 valor);
-28080000
+28080000 ~
+
+! 8. INDICE_INFLACION (1 valor);
+! Representa la tasa de inflación por la que se multiplican los valores originales dados;
+! Proyección para Sep 2025 en base a: https://www.iprofesional.com/economia/419097-inflacion-indec-2025-argentina-evolucion-mes-a-mes;
+1.222
