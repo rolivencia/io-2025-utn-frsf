@@ -134,8 +134,7 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
 !8 - Restricción de disponibilidad de leche fluida para planta 3;
 [DISPONIBILIDAD_LECHE_FLUIDA_SANTA_FE]
-@SUM(CENTROS(K): Q(1,3,K) + Q(2,3,K)) <= CAPACIDAD_MAXIMA_PROD_AGRUPADOS(1,3);
-
+@SUM(CENTROS(K): Q(1,3,K)) <= CAPACIDAD_MAXIMA_PROD_AGRUPADOS(1,3);
 
 ! 9 - Restricción del subproducto crema producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! La capacidad máxima de producto agrupado de índice 3 corresponde a la capacidad de producción 
