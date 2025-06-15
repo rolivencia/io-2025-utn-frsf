@@ -106,8 +106,8 @@ ENDDATA
 ! i = 4 (leche en polvo descremada) y por último con el stock de leche en polvo almacenada S(4,3);
 [DESCREMADA_SANTA_FE]
 @SUM(PLANTAS(J) | J #NE# 3: LITROS_LECHE_DESCREMADA_SANTA_FE(J)) - 
-@SUM(CENTROS(K): Q(2,3,K)) -
-@SUM(CENTROS(K): Q(4,3,K)) - 
+@SUM(CENTROS(K): CONVERSION_LECHE_DESNATADA * Q(2,3,K)) -
+@SUM(CENTROS(K): CONVERSION_LECHE_DESNATADA *Q(4,3,K)) - 
 CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
 !5 - - Definición de LITROS_CREMA C[j] producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
