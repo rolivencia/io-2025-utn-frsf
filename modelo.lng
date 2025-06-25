@@ -67,6 +67,7 @@ CONVERSION_LECHE_EN_POLVO = 8.755;
 CONVERSION_LECHE_DESNATADA = 11.525;
 CONVERSION_CREMA = 0.08;
 CONVERSION_CREMA_MANTECA = 2.77;
+PORCENTAJE_LECHE_CRUDA_APTA = 0.98;
 
 ENDDATA
 
@@ -85,7 +86,7 @@ ENDDATA
 @SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_FLUIDA * Q(1,J,K))) +
 @SUM(PLANTAS(J) | J #NE# 3: CONVERSION_LECHE_FLUIDA * LITROS_ENTERA_A_DESCREMADA(J)) +
 @SUM(PLANTAS(J): @SUM(CENTROS(K): CONVERSION_LECHE_EN_POLVO * Q(3,J,K))) +
-@SUM(PLANTAS(J): CONVERSION_LECHE_EN_POLVO * S(3,J)) <= DISPONIBILIDAD_LECHE;
+@SUM(PLANTAS(J): CONVERSION_LECHE_EN_POLVO * S(3,J)) <= DISPONIBILIDAD_LECHE * PORCENTAJE_LECHE_CRUDA_APTA;
 
 !3 - Definición de LITROS_ENTERA_A_DESCREMADA - L[j] en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 @FOR(PLANTAS(J) | J #NE# 3: [ENTERA_A_DESCREMADA_PLANTA_J_]
@@ -105,8 +106,8 @@ ENDDATA
 ! i = 4 (leche en polvo descremada) y por último con el stock de leche en polvo almacenada S(4,3);
 [DESCREMADA_SANTA_FE]
 @SUM(PLANTAS(J) | J #NE# 3: LITROS_LECHE_DESCREMADA_SANTA_FE(J)) - 
-@SUM(CENTROS(K): Q(2,3,K)) -
-@SUM(CENTROS(K): Q(4,3,K)) - 
+@SUM(CENTROS(K): CONVERSION_LECHE_DESNATADA * Q(2,3,K)) -
+@SUM(CENTROS(K): CONVERSION_LECHE_DESNATADA *Q(4,3,K)) - 
 CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
 !5 - - Definición de LITROS_CREMA C[j] producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
@@ -133,8 +134,7 @@ CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
 !8 - Restricción de disponibilidad de leche fluida para planta 3;
 [DISPONIBILIDAD_LECHE_FLUIDA_SANTA_FE]
-@SUM(CENTROS(K): Q(1,3,K) + Q(2,3,K)) <= CAPACIDAD_MAXIMA_PROD_AGRUPADOS(1,3);
-
+@SUM(CENTROS(K): Q(1,3,K)) <= CAPACIDAD_MAXIMA_PROD_AGRUPADOS(1,3);
 
 ! 9 - Restricción del subproducto crema producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
 ! La capacidad máxima de producto agrupado de índice 3 corresponde a la capacidad de producción 
