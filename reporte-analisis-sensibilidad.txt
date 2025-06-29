@@ -1,0 +1,218 @@
+
+ Ranges in which the basis is unchanged:
+
+                                       Objective Coefficient Ranges:
+
+                                        Current        Allowable        Allowable
+                      Variable      Coefficient         Increase         Decrease
+  LITROS_LECHE_DESCREMADA_SANT         24.44000         INFINITY         25.62395
+  LITROS_LECHE_DESCREMADA_SANT         24.44000         INFINITY         20.56479
+   LITROS_ENTERA_A_DESCREMADA(         0.000000         1.734670         2.671677
+   LITROS_ENTERA_A_DESCREMADA(         0.000000         2.671677         1.329937
+              LITROS_CREMA( 1)         0.000000         21.68337         33.39596
+              LITROS_CREMA( 2)         0.000000         33.39596         16.62421
+                      S( 3, 1)         0.000000         INFINITY         19.99207
+                      S( 3, 2)         0.000000         INFINITY         15.32752
+                      S( 3, 3)         0.000000         INFINITY         0.000000
+                      S( 4, 1)         0.000000         17.53394         4.818248
+                      S( 4, 2)         0.000000         4.818248         15.32752
+                      S( 4, 3)         0.000000         INFINITY         29.33431
+                   Q( 1, 1, 1)         18.41064         47.85841         23.87453
+                   Q( 1, 1, 2)         60.59578         INFINITY         31.06898
+                   Q( 1, 1, 3)         105.6792         INFINITY         30.74799
+                   Q( 1, 1, 4)         114.8904         INFINITY         41.98515
+                   Q( 1, 2, 1)         84.62151         INFINITY         60.74698
+                   Q( 1, 2, 2)         65.65494         INFINITY         30.66424
+                   Q( 1, 2, 3)         80.39509         16.09390         80.39509
+                   Q( 1, 2, 4)         78.36910         11.56744         78.36910
+                   Q( 1, 3, 1)         71.73294         INFINITY         47.85841
+                   Q( 1, 3, 2)         34.99070         30.66424         34.99070
+                   Q( 1, 3, 3)         96.48899         INFINITY         16.09390
+                   Q( 1, 3, 4)         89.93655         INFINITY         11.56744
+                   Q( 2, 1, 1)         18.41064         61.15171         22.13986
+                   Q( 2, 1, 2)         60.59578         5.463894         47.85841
+                   Q( 2, 1, 3)         105.6792         INFINITY         30.34326
+                   Q( 2, 1, 4)         114.8904         INFINITY         41.58042
+                   Q( 2, 2, 1)         84.62151         INFINITY         61.15171
+                   Q( 2, 2, 2)         65.65494         47.85841         4.948513
+                   Q( 2, 2, 3)         80.39509         30.34326         79.06516
+                   Q( 2, 2, 4)         78.36910         41.58042         77.03917
+                   Q( 2, 3, 1)         71.73294         INFINITY         78.92738
+                   Q( 2, 3, 2)         34.99070         4.948513         237.0092
+                   Q( 2, 3, 3)         96.48899         INFINITY         46.75814
+                   Q( 2, 3, 4)         89.93655         INFINITY         42.23168
+                   Q( 3, 1, 1)         17.53394         30.79108         37.52601
+                   Q( 3, 1, 2)         57.71027         INFINITY         44.37786
+                   Q( 3, 1, 3)         100.6469         INFINITY         28.74464
+                   Q( 3, 1, 4)         109.4194         INFINITY         43.75761
+                   Q( 3, 2, 1)         80.59191         INFINITY         58.39343
+                   Q( 3, 2, 2)         62.52852         INFINITY         44.53156
+                   Q( 3, 2, 3)         76.56676         4.310911         30.79108
+                   Q( 3, 2, 4)         74.63724         INFINITY         4.310911
+                   Q( 3, 3, 1)         68.31708         INFINITY         30.79108
+                   Q( 3, 3, 2)         33.32448         44.37786         33.32448
+                   Q( 3, 3, 3)         91.89428         30.79108         4.310911
+                   Q( 3, 3, 4)         85.65385         4.310911         85.65385
+                   Q( 4, 1, 1)         17.53394         63.05797         17.53394
+                   Q( 4, 1, 2)         57.71027         4.818248         57.71027
+                   Q( 4, 1, 3)         100.6469         INFINITY         24.08010
+                   Q( 4, 1, 4)         109.4194         INFINITY         34.78215
+                   Q( 4, 2, 1)         80.59191         INFINITY         63.05797
+                   Q( 4, 2, 2)         62.52852         INFINITY         4.818248
+                   Q( 4, 2, 3)         76.56676         24.08010         76.56676
+                   Q( 4, 2, 4)         74.63724         34.78215         74.63724
+                   Q( 4, 3, 1)         68.31708         INFINITY         80.11745
+                   Q( 4, 3, 2)         33.32448         INFINITY         4.948513
+                   Q( 4, 3, 3)         91.89428         INFINITY         44.66183
+                   Q( 4, 3, 4)         85.65385         INFINITY         40.35092
+                   Q( 5, 1, 1)         18.41064         61.15171         40.09401
+                   Q( 5, 1, 2)         60.59578         3.232749         18.84368
+                   Q( 5, 1, 3)         105.6792         INFINITY         30.34326
+                   Q( 5, 1, 4)         114.8904         INFINITY         41.58042
+                   Q( 5, 2, 1)         84.62151         INFINITY         61.15171
+                   Q( 5, 2, 2)         65.65494         18.84368         3.232749
+                   Q( 5, 2, 3)         80.39509         30.34326         97.01930
+                   Q( 5, 2, 4)         78.36910         41.58042         94.99331
+                   Q( 6, 1, 1)         18.41064         52.19700         78.47357
+                   Q( 6, 1, 2)         60.59578         INFINITY         8.954714
+                   Q( 6, 1, 3)         105.6792         INFINITY         39.29798
+                   Q( 6, 1, 4)         114.8904         INFINITY         50.53514
+                   Q( 6, 2, 1)         84.62151         INFINITY         52.19700
+                   Q( 6, 2, 2)         65.65494         8.954714         111.7040
+                   Q( 6, 2, 3)         80.39509         39.29798         126.4442
+                   Q( 6, 2, 4)         78.36910         50.53514         124.4182
+
+                                           Righthand Side Ranges:
+
+                                        Current        Allowable        Allowable
+                           Row              RHS         Increase         Decrease
+  DEMANDA_PRODUCTO_I_CENTRO_K(         722315.5         59054.25         60157.59
+  DEMANDA_PRODUCTO_I_CENTRO_K(         401286.4         948713.6         401286.4
+  DEMANDA_PRODUCTO_I_CENTRO_K(         288926.2         165851.4         288926.2
+  DEMANDA_PRODUCTO_I_CENTRO_K(         192617.5         165851.4         192617.5
+  DEMANDA_PRODUCTO_I_CENTRO_K(         418630.3         11936.89         173518.1
+  DEMANDA_PRODUCTO_I_CENTRO_K(         232572.4         11936.89         173518.1
+  DEMANDA_PRODUCTO_I_CENTRO_K(         167452.1         11936.89         167452.1
+  DEMANDA_PRODUCTO_I_CENTRO_K(         111634.7         11936.89         111634.7
+  DEMANDA_PRODUCTO_I_CENTRO_K(         59080.86         22596.61         1035.739
+  DEMANDA_PRODUCTO_I_CENTRO_K(         32822.70         60386.67         32822.70
+  DEMANDA_PRODUCTO_I_CENTRO_K(         23632.34         60386.67         1035.739
+  DEMANDA_PRODUCTO_I_CENTRO_K(         15754.90         60386.67         15754.90
+  DEMANDA_PRODUCTO_I_CENTRO_K(         15830.10         116294.5         15830.10
+  DEMANDA_PRODUCTO_I_CENTRO_K(         8794.500         116294.5         8794.500
+  DEMANDA_PRODUCTO_I_CENTRO_K(         6332.040         86849.99         6332.040
+  DEMANDA_PRODUCTO_I_CENTRO_K(         4221.360         86849.99         4221.360
+  DEMANDA_PRODUCTO_I_CENTRO_K(         73051.88         20834.07         954.9511
+  DEMANDA_PRODUCTO_I_CENTRO_K(         40584.38         20834.07         954.9511
+  DEMANDA_PRODUCTO_I_CENTRO_K(         29220.75         20834.07         954.9511
+  DEMANDA_PRODUCTO_I_CENTRO_K(         19480.50         20834.07         954.9511
+  DEMANDA_PRODUCTO_I_CENTRO_K(         21414.65         7521.325         344.7477
+  DEMANDA_PRODUCTO_I_CENTRO_K(         11897.02         7521.325         344.7477
+  DEMANDA_PRODUCTO_I_CENTRO_K(         8565.858         7521.325         344.7477
+  DEMANDA_PRODUCTO_I_CENTRO_K(         5710.572         7521.325         344.7477
+    DISPONIBILIDAD_LECHE_CRUDA        0.2751840E+08     INFINITY        0.2075407E+08
+  ENTERA_A_DESCREMADA_PLANTA_J         0.000000         11936.89         260425.9
+  ENTERA_A_DESCREMADA_PLANTA_J         0.000000         11936.89         260425.9
+           DESCREMADA_SANTA_FE         0.000000         0.000000         1999796.
+  CREMA_PRODUCIDA_PLANTA_J_( 1         0.000000         954.9511         20834.07
+  CREMA_PRODUCIDA_PLANTA_J_( 2         0.000000         954.9511         20834.07
+  MANTECA_PRODUCIDA_PLANTA_J_(         0.000000         20834.07         954.9511
+  MANTECA_PRODUCIDA_PLANTA_J_(         0.000000         20834.07         954.9511
+    LECHE_ENTERA_PLANTA_J_( 1)         1200000.         60157.59         59054.25
+    LECHE_ENTERA_PLANTA_J_( 2)         1100000.         INFINITY         165851.4
+  DISPONIBILIDAD_LECHE_FLUIDA_         1350000.         INFINITY         948713.6
+  SUBPRODUCTO_CREMA_PLANTA_J_(         150000.0         INFINITY         41176.36
+  SUBPRODUCTO_CREMA_PLANTA_J_(         200000.0         INFINITY         146486.1
+  SUBPRODUCTO_MANTECA_PLANTA_J         70000.00         INFINITY         48585.35
+  SUBPRODUCTO_MANTECA_PLANTA_J         90000.00         INFINITY         63826.55
+               EN_POLVO_J_( 1)         200000.0         1035.739         22596.61
+               EN_POLVO_J_( 2)         120000.0         1035.739         22596.61
+               EN_POLVO_J_( 3)         110000.0         INFINITY         60386.67
+    NO_NEGATIVA_QIJK( 1, 1, 1)         0.000000         722315.5         INFINITY
+    NO_NEGATIVA_QIJK( 1, 1, 2)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 1, 1, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 1, 1, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 1, 2, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 1, 2, 2)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 1, 2, 3)         0.000000         288926.2         INFINITY
+    NO_NEGATIVA_QIJK( 1, 2, 4)         0.000000         192617.5         INFINITY
+    NO_NEGATIVA_QIJK( 1, 3, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 1, 3, 2)         0.000000         401286.4         INFINITY
+    NO_NEGATIVA_QIJK( 1, 3, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 1, 3, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 2, 1, 1)         0.000000         418630.3         INFINITY
+    NO_NEGATIVA_QIJK( 2, 1, 2)         0.000000         59054.25         INFINITY
+    NO_NEGATIVA_QIJK( 2, 1, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 2, 1, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 2, 2, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 2, 2, 2)         0.000000         173518.1         INFINITY
+    NO_NEGATIVA_QIJK( 2, 2, 3)         0.000000         167452.1         INFINITY
+    NO_NEGATIVA_QIJK( 2, 2, 4)         0.000000         111634.7         INFINITY
+    NO_NEGATIVA_QIJK( 2, 3, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 2, 3, 2)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 2, 3, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 2, 3, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 3, 1, 1)         0.000000         59080.86         INFINITY
+    NO_NEGATIVA_QIJK( 3, 1, 2)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 3, 1, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 3, 1, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 3, 2, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 3, 2, 2)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 3, 2, 3)         0.000000         22596.61         INFINITY
+    NO_NEGATIVA_QIJK( 3, 2, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 3, 3, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 3, 3, 2)         0.000000         32822.70         INFINITY
+    NO_NEGATIVA_QIJK( 3, 3, 3)         0.000000         1035.739         INFINITY
+    NO_NEGATIVA_QIJK( 3, 3, 4)         0.000000         15754.90         INFINITY
+    NO_NEGATIVA_QIJK( 4, 1, 1)         0.000000         15830.10         INFINITY
+    NO_NEGATIVA_QIJK( 4, 1, 2)         0.000000         8794.500         INFINITY
+    NO_NEGATIVA_QIJK( 4, 1, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 4, 1, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 4, 2, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 4, 2, 2)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 4, 2, 3)         0.000000         6332.040         INFINITY
+    NO_NEGATIVA_QIJK( 4, 2, 4)         0.000000         4221.360         INFINITY
+    NO_NEGATIVA_QIJK( 4, 3, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 4, 3, 2)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 4, 3, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 4, 3, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 5, 1, 1)         0.000000         73051.88         INFINITY
+    NO_NEGATIVA_QIJK( 5, 1, 2)         0.000000         35771.77         INFINITY
+    NO_NEGATIVA_QIJK( 5, 1, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 5, 1, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 5, 2, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 5, 2, 2)         0.000000         4812.608         INFINITY
+    NO_NEGATIVA_QIJK( 5, 2, 3)         0.000000         29220.75         INFINITY
+    NO_NEGATIVA_QIJK( 5, 2, 4)         0.000000         19480.50         INFINITY
+    NO_NEGATIVA_QIJK( 5, 3, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 5, 3, 2)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 5, 3, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 5, 3, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 6, 1, 1)         0.000000         21414.65         INFINITY
+    NO_NEGATIVA_QIJK( 6, 1, 2)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 6, 1, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 6, 1, 4)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 6, 2, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 6, 2, 2)         0.000000         11897.02         INFINITY
+    NO_NEGATIVA_QIJK( 6, 2, 3)         0.000000         8565.858         INFINITY
+    NO_NEGATIVA_QIJK( 6, 2, 4)         0.000000         5710.572         INFINITY
+    NO_NEGATIVA_QIJK( 6, 3, 1)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 6, 3, 2)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 6, 3, 3)         0.000000         0.000000         INFINITY
+    NO_NEGATIVA_QIJK( 6, 3, 4)         0.000000         0.000000         INFINITY
+  CERO_STOCK_FLUIDA_CREMA_MANT         0.000000         0.000000         INFINITY
+  CERO_STOCK_FLUIDA_CREMA_MANT         0.000000         116294.5         INFINITY
+  CERO_STOCK_FLUIDA_CREMA_MANT         0.000000         0.000000         INFINITY
+  CERO_STOCK_FLUIDA_CREMA_MANT         0.000000         86849.99         INFINITY
+  CERO_STOCK_FLUIDA_CREMA_MANT         0.000000         0.000000         INFINITY
+  CERO_STOCK_FLUIDA_CREMA_MANT         0.000000         0.000000         INFINITY
+  NO_NEGATIVA_DESCREMADA_SANTA         0.000000         0.000000         INFINITY
+  NO_NEGATIVA_DESCREMADA_SANTA         0.000000         0.000000         INFINITY
+  NO_NEGATIVA_DESCREMADA_SANTA         0.000000         0.000000         INFINITY
+  NO_NEGATIVA_ENTERA_A_DESCREM         0.000000         2101778.         INFINITY
+  NO_NEGATIVA_ENTERA_A_DESCREM         0.000000         1575179.         INFINITY
+  NO_NEGATIVA_ENTERA_A_DESCREM         0.000000         0.000000         INFINITY
+   NO_NEGATIVA_CREMA_PLANTA_J(         0.000000         168142.2         INFINITY
+   NO_NEGATIVA_CREMA_PLANTA_J(         0.000000         126014.3         INFINITY
+   NO_NEGATIVA_CREMA_PLANTA_J(         0.000000         0.000000         INFINITY
+
