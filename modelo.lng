@@ -111,7 +111,6 @@ ENDDATA
 CONVERSION_LECHE_DESNATADA * S(4,3) = 0;
 
 !5 - - Definición de LITROS_CREMA C[j] producido en las plantas j=1 (Buenos Aires) y j=2 (Córdoba);
-! Si bien podemos agrupar las restricciones 5 y 6, utilizamos esta definición para hacer más sencilla la definición de la restricción #9;
 @FOR(PLANTAS(JJ) | JJ #NE# 3: [CREMA_PRODUCIDA_PLANTA_J_]
     LITROS_CREMA(JJ) = CONVERSION_CREMA * LITROS_ENTERA_A_DESCREMADA(JJ)
 );
@@ -217,4 +216,5 @@ LITROS_ENTERA_A_DESCREMADA(3) = 0;
 );
 [CERO_CREMA_SANTA_FE]
 LITROS_CREMA(3) = 0;
+
 
