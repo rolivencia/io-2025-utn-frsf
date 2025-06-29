@@ -1,0 +1,339 @@
+  LINGO/OSX64 20.0.24 (14 Sep 2024), LINDO API 14.0.5099.166
+
+  Licensee info: Eval Use Only
+  License expires: 12 DEC 2025
+
+  Global optimal solution found.
+  Objective value:                             0.1274576E+09
+  Infeasibilities:                              0.000000
+  Total solver iterations:                            33
+  Elapsed runtime seconds:                          0.27
+
+  Model Class:                                        LP
+
+  Total variables:                     76
+  Nonlinear variables:                  0
+  Integer variables:                    0
+
+  Total constraints:                  130
+  Nonlinear constraints:                0
+
+  Total nonzeros:                     358
+  Nonlinear nonzeros:                   0
+
+                                Variable           Value        Reduced Cost
+                    DISPONIBILIDAD_LECHE       0.2808000E+08        0.000000
+                        INDICE_INFLACION        1.222000            0.000000
+                    COSTO_ENVIO_SANTA_FE        20.00000            0.000000
+                 CONVERSION_LECHE_FLUIDA        1.063000            0.000000
+               CONVERSION_LECHE_EN_POLVO        8.755000            0.000000
+              CONVERSION_LECHE_DESNATADA        11.52500            0.000000
+                        CONVERSION_CREMA       0.8000000E-01        0.000000
+                CONVERSION_CREMA_MANTECA        2.770000            0.000000
+             PORCENTAJE_LECHE_CRUDA_APTA       0.9800000            0.000000
+                    DEMANDA_PRODUCTO( 1)        1605146.            0.000000
+                    DEMANDA_PRODUCTO( 2)        930289.5            0.000000
+                    DEMANDA_PRODUCTO( 3)        131290.8            0.000000
+                    DEMANDA_PRODUCTO( 4)        35178.00            0.000000
+                    DEMANDA_PRODUCTO( 5)        162337.5            0.000000
+                    DEMANDA_PRODUCTO( 6)        47588.10            0.000000
+       FACTOR_REFRIGERACION_PRODUCTO( 1)        1.050000            0.000000
+       FACTOR_REFRIGERACION_PRODUCTO( 2)        1.050000            0.000000
+       FACTOR_REFRIGERACION_PRODUCTO( 3)        1.000000            0.000000
+       FACTOR_REFRIGERACION_PRODUCTO( 4)        1.000000            0.000000
+       FACTOR_REFRIGERACION_PRODUCTO( 5)        1.050000            0.000000
+       FACTOR_REFRIGERACION_PRODUCTO( 6)        1.050000            0.000000
+    LITROS_LECHE_DESCREMADA_SANTA_FE( 1)        0.000000            25.62395
+    LITROS_LECHE_DESCREMADA_SANTA_FE( 2)        0.000000            20.56479
+    LITROS_LECHE_DESCREMADA_SANTA_FE( 3)        0.000000            0.000000
+          LITROS_ENTERA_A_DESCREMADA( 1)        2101778.            0.000000
+          LITROS_ENTERA_A_DESCREMADA( 2)        1575179.            0.000000
+          LITROS_ENTERA_A_DESCREMADA( 3)        0.000000            0.000000
+                        LITROS_CREMA( 1)        168142.2            0.000000
+                        LITROS_CREMA( 2)        126014.3            0.000000
+                        LITROS_CREMA( 3)        0.000000            0.000000
+             FRACCION_DEMANDA_CENTRO( 1)       0.4500000            0.000000
+             FRACCION_DEMANDA_CENTRO( 2)       0.2500000            0.000000
+             FRACCION_DEMANDA_CENTRO( 3)       0.1800000            0.000000
+             FRACCION_DEMANDA_CENTRO( 4)       0.1200000            0.000000
+                                S( 1, 1)        0.000000            0.000000
+                                S( 1, 2)        0.000000            0.000000
+                                S( 1, 3)        0.000000            0.000000
+                                S( 2, 1)        0.000000            0.000000
+                                S( 2, 2)        0.000000            0.000000
+                                S( 2, 3)        0.000000            0.000000
+                                S( 3, 1)        0.000000            19.99207
+                                S( 3, 2)        0.000000            15.32752
+                                S( 3, 3)        0.000000            0.000000
+                                S( 4, 1)        116294.5            0.000000
+                                S( 4, 2)        86849.99            0.000000
+                                S( 4, 3)        0.000000            29.33431
+                                S( 5, 1)        0.000000            0.000000
+                                S( 5, 2)        0.000000            0.000000
+                                S( 5, 3)        0.000000            0.000000
+                                S( 6, 1)        0.000000            0.000000
+                                S( 6, 2)        0.000000            0.000000
+                                S( 6, 3)        0.000000            0.000000
+                             Q( 1, 1, 1)        722315.5            0.000000
+                             Q( 1, 1, 2)        0.000000            31.06898
+                             Q( 1, 1, 3)        0.000000            30.74799
+                             Q( 1, 1, 4)        0.000000            41.98515
+                             Q( 1, 2, 1)        0.000000            60.74698
+                             Q( 1, 2, 2)        0.000000            30.66424
+                             Q( 1, 2, 3)        288926.2            0.000000
+                             Q( 1, 2, 4)        192617.5            0.000000
+                             Q( 1, 3, 1)        0.000000            47.85841
+                             Q( 1, 3, 2)        401286.4            0.000000
+                             Q( 1, 3, 3)        0.000000            16.09390
+                             Q( 1, 3, 4)        0.000000            11.56744
+                             Q( 2, 1, 1)        418630.3            0.000000
+                             Q( 2, 1, 2)        59054.25            0.000000
+                             Q( 2, 1, 3)        0.000000            30.34326
+                             Q( 2, 1, 4)        0.000000            41.58042
+                             Q( 2, 2, 1)        0.000000            61.15171
+                             Q( 2, 2, 2)        173518.1            0.000000
+                             Q( 2, 2, 3)        167452.1            0.000000
+                             Q( 2, 2, 4)        111634.7            0.000000
+                             Q( 2, 3, 1)        0.000000            78.92738
+                             Q( 2, 3, 2)        0.000000            0.000000
+                             Q( 2, 3, 3)        0.000000            46.75814
+                             Q( 2, 3, 4)        0.000000            42.23168
+                             Q( 3, 1, 1)        59080.86            0.000000
+                             Q( 3, 1, 2)        0.000000            44.37786
+                             Q( 3, 1, 3)        0.000000            28.74464
+                             Q( 3, 1, 4)        0.000000            43.75761
+                             Q( 3, 2, 1)        0.000000            58.39343
+                             Q( 3, 2, 2)        0.000000            44.53156
+                             Q( 3, 2, 3)        22596.61            0.000000
+                             Q( 3, 2, 4)        0.000000            4.310911
+                             Q( 3, 3, 1)        0.000000            30.79108
+                             Q( 3, 3, 2)        32822.70            0.000000
+                             Q( 3, 3, 3)        1035.739            0.000000
+                             Q( 3, 3, 4)        15754.90            0.000000
+                             Q( 4, 1, 1)        15830.10            0.000000
+                             Q( 4, 1, 2)        8794.500            0.000000
+                             Q( 4, 1, 3)        0.000000            24.08010
+                             Q( 4, 1, 4)        0.000000            34.78215
+                             Q( 4, 2, 1)        0.000000            63.05797
+                             Q( 4, 2, 2)        0.000000            4.818248
+                             Q( 4, 2, 3)        6332.040            0.000000
+                             Q( 4, 2, 4)        4221.360            0.000000
+                             Q( 4, 3, 1)        0.000000            80.11745
+                             Q( 4, 3, 2)        0.000000            4.948513
+                             Q( 4, 3, 3)        0.000000            44.66183
+                             Q( 4, 3, 4)        0.000000            40.35092
+                             Q( 5, 1, 1)        73051.88            0.000000
+                             Q( 5, 1, 2)        35771.77            0.000000
+                             Q( 5, 1, 3)        0.000000            30.34326
+                             Q( 5, 1, 4)        0.000000            41.58042
+                             Q( 5, 2, 1)        0.000000            61.15171
+                             Q( 5, 2, 2)        4812.608            0.000000
+                             Q( 5, 2, 3)        29220.75            0.000000
+                             Q( 5, 2, 4)        19480.50            0.000000
+                             Q( 5, 3, 1)        0.000000            0.000000
+                             Q( 5, 3, 2)        0.000000            0.000000
+                             Q( 5, 3, 3)        0.000000            0.000000
+                             Q( 5, 3, 4)        0.000000            0.000000
+                             Q( 6, 1, 1)        21414.65            0.000000
+                             Q( 6, 1, 2)        0.000000            8.954714
+                             Q( 6, 1, 3)        0.000000            39.29798
+                             Q( 6, 1, 4)        0.000000            50.53514
+                             Q( 6, 2, 1)        0.000000            52.19700
+                             Q( 6, 2, 2)        11897.02            0.000000
+                             Q( 6, 2, 3)        8565.858            0.000000
+                             Q( 6, 2, 4)        5710.572            0.000000
+                             Q( 6, 3, 1)        0.000000            0.000000
+                             Q( 6, 3, 2)        0.000000            0.000000
+                             Q( 6, 3, 3)        0.000000            0.000000
+                             Q( 6, 3, 4)        0.000000            0.000000
+                        DISTANCIA( 1, 1)        60.00000            0.000000
+                        DISTANCIA( 1, 2)        360.0000            0.000000
+                        DISTANCIA( 1, 3)        1100.000            0.000000
+                        DISTANCIA( 1, 4)        1305.000            0.000000
+                        DISTANCIA( 2, 1)        700.0000            0.000000
+                        DISTANCIA( 2, 2)        400.0000            0.000000
+                        DISTANCIA( 2, 3)        610.0000            0.000000
+                        DISTANCIA( 2, 4)        570.0000            0.000000
+                        DISTANCIA( 3, 1)        468.0000            0.000000
+                        DISTANCIA( 3, 2)        175.0000            0.000000
+                        DISTANCIA( 3, 3)        910.0000            0.000000
+                        DISTANCIA( 3, 4)        780.0000            0.000000
+                 COSTO_TRANSPORTE( 1, 1)        14348.56            0.000000
+                 COSTO_TRANSPORTE( 1, 2)        47226.08            0.000000
+                 COSTO_TRANSPORTE( 1, 3)        82362.40            0.000000
+                 COSTO_TRANSPORTE( 1, 4)        89541.24            0.000000
+                 COSTO_TRANSPORTE( 2, 1)        65950.83            0.000000
+                 COSTO_TRANSPORTE( 2, 2)        51169.00            0.000000
+                 COSTO_TRANSPORTE( 2, 3)        62656.92            0.000000
+                 COSTO_TRANSPORTE( 2, 4)        61077.94            0.000000
+                 COSTO_TRANSPORTE( 3, 1)        55905.96            0.000000
+                 COSTO_TRANSPORTE( 3, 2)        27270.44            0.000000
+                 COSTO_TRANSPORTE( 3, 3)        75199.90            0.000000
+                 COSTO_TRANSPORTE( 3, 4)        70093.17            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 1, 1)        1200000.            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 1, 2)        1100000.            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 1, 3)        1350000.            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 2, 1)        200000.0            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 2, 2)        120000.0            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 2, 3)        110000.0            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 3, 1)        150000.0            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 3, 2)        200000.0            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 3, 3)        0.000000            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 4, 1)        70000.00            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 4, 2)        90000.00            0.000000
+  CAPACIDAD_MAXIMA_PROD_AGRUPADOS( 4, 3)        0.000000            0.000000
+
+                                     Row    Slack or Surplus      Dual Price
+                                      FO       0.1274576E+09       -1.000000
+      DEMANDA_PRODUCTO_I_CENTRO_K( 1, 1)        0.000000           -23.87453
+      DEMANDA_PRODUCTO_I_CENTRO_K( 1, 2)        0.000000           -34.99070
+      DEMANDA_PRODUCTO_I_CENTRO_K( 1, 3)        0.000000           -80.39509
+      DEMANDA_PRODUCTO_I_CENTRO_K( 1, 4)        0.000000           -78.36910
+      DEMANDA_PRODUCTO_I_CENTRO_K( 2, 1)        0.000000           -22.13986
+      DEMANDA_PRODUCTO_I_CENTRO_K( 2, 2)        0.000000           -64.32501
+      DEMANDA_PRODUCTO_I_CENTRO_K( 2, 3)        0.000000           -79.06516
+      DEMANDA_PRODUCTO_I_CENTRO_K( 2, 4)        0.000000           -77.03917
+      DEMANDA_PRODUCTO_I_CENTRO_K( 3, 1)        0.000000           -37.52601
+      DEMANDA_PRODUCTO_I_CENTRO_K( 3, 2)        0.000000           -33.32448
+      DEMANDA_PRODUCTO_I_CENTRO_K( 3, 3)        0.000000           -91.89428
+      DEMANDA_PRODUCTO_I_CENTRO_K( 3, 4)        0.000000           -85.65385
+      DEMANDA_PRODUCTO_I_CENTRO_K( 4, 1)        0.000000           -17.53394
+      DEMANDA_PRODUCTO_I_CENTRO_K( 4, 2)        0.000000           -57.71027
+      DEMANDA_PRODUCTO_I_CENTRO_K( 4, 3)        0.000000           -76.56676
+      DEMANDA_PRODUCTO_I_CENTRO_K( 4, 4)        0.000000           -74.63724
+      DEMANDA_PRODUCTO_I_CENTRO_K( 5, 1)        0.000000           -40.09401
+      DEMANDA_PRODUCTO_I_CENTRO_K( 5, 2)        0.000000           -82.27915
+      DEMANDA_PRODUCTO_I_CENTRO_K( 5, 3)        0.000000           -97.01930
+      DEMANDA_PRODUCTO_I_CENTRO_K( 5, 4)        0.000000           -94.99331
+      DEMANDA_PRODUCTO_I_CENTRO_K( 6, 1)        0.000000           -78.47357
+      DEMANDA_PRODUCTO_I_CENTRO_K( 6, 2)        0.000000           -111.7040
+      DEMANDA_PRODUCTO_I_CENTRO_K( 6, 3)        0.000000           -126.4442
+      DEMANDA_PRODUCTO_I_CENTRO_K( 6, 4)        0.000000           -124.4182
+              DISPONIBILIDAD_LECHE_CRUDA       0.2075407E+08        0.000000
+       ENTERA_A_DESCREMADA_PLANTA_J_( 1)        0.000000            1.734670
+       ENTERA_A_DESCREMADA_PLANTA_J_( 2)        0.000000            1.329937
+                     DESCREMADA_SANTA_FE        0.000000           -2.545276
+           CREMA_PRODUCIDA_PLANTA_J_( 1)        0.000000            21.68337
+           CREMA_PRODUCIDA_PLANTA_J_( 2)        0.000000            16.62421
+         MANTECA_PRODUCIDA_PLANTA_J_( 1)        0.000000           -21.68337
+         MANTECA_PRODUCIDA_PLANTA_J_( 2)        0.000000           -16.62421
+              LECHE_ENTERA_PLANTA_J_( 1)        0.000000            5.463894
+              LECHE_ENTERA_PLANTA_J_( 2)        165851.4            0.000000
+    DISPONIBILIDAD_LECHE_FLUIDA_SANTA_FE        948713.6            0.000000
+         SUBPRODUCTO_CREMA_PLANTA_J_( 1)        41176.36            0.000000
+         SUBPRODUCTO_CREMA_PLANTA_J_( 2)        146486.1            0.000000
+       SUBPRODUCTO_MANTECA_PLANTA_J_( 1)        48585.35            0.000000
+       SUBPRODUCTO_MANTECA_PLANTA_J_( 2)        63826.55            0.000000
+                         EN_POLVO_J_( 1)        0.000000            19.99207
+                         EN_POLVO_J_( 2)        0.000000            15.32752
+                         EN_POLVO_J_( 3)        60386.67            0.000000
+              NO_NEGATIVA_QIJK( 1, 1, 1)        722315.5            0.000000
+              NO_NEGATIVA_QIJK( 1, 1, 2)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 1, 1, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 1, 1, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 1, 2, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 1, 2, 2)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 1, 2, 3)        288926.2            0.000000
+              NO_NEGATIVA_QIJK( 1, 2, 4)        192617.5            0.000000
+              NO_NEGATIVA_QIJK( 1, 3, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 1, 3, 2)        401286.4            0.000000
+              NO_NEGATIVA_QIJK( 1, 3, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 1, 3, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 2, 1, 1)        418630.3            0.000000
+              NO_NEGATIVA_QIJK( 2, 1, 2)        59054.25            0.000000
+              NO_NEGATIVA_QIJK( 2, 1, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 2, 1, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 2, 2, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 2, 2, 2)        173518.1            0.000000
+              NO_NEGATIVA_QIJK( 2, 2, 3)        167452.1            0.000000
+              NO_NEGATIVA_QIJK( 2, 2, 4)        111634.7            0.000000
+              NO_NEGATIVA_QIJK( 2, 3, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 2, 3, 2)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 2, 3, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 2, 3, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 3, 1, 1)        59080.86            0.000000
+              NO_NEGATIVA_QIJK( 3, 1, 2)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 3, 1, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 3, 1, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 3, 2, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 3, 2, 2)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 3, 2, 3)        22596.61            0.000000
+              NO_NEGATIVA_QIJK( 3, 2, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 3, 3, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 3, 3, 2)        32822.70            0.000000
+              NO_NEGATIVA_QIJK( 3, 3, 3)        1035.739            0.000000
+              NO_NEGATIVA_QIJK( 3, 3, 4)        15754.90            0.000000
+              NO_NEGATIVA_QIJK( 4, 1, 1)        15830.10            0.000000
+              NO_NEGATIVA_QIJK( 4, 1, 2)        8794.500            0.000000
+              NO_NEGATIVA_QIJK( 4, 1, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 4, 1, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 4, 2, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 4, 2, 2)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 4, 2, 3)        6332.040            0.000000
+              NO_NEGATIVA_QIJK( 4, 2, 4)        4221.360            0.000000
+              NO_NEGATIVA_QIJK( 4, 3, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 4, 3, 2)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 4, 3, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 4, 3, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 5, 1, 1)        73051.88            0.000000
+              NO_NEGATIVA_QIJK( 5, 1, 2)        35771.77            0.000000
+              NO_NEGATIVA_QIJK( 5, 1, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 5, 1, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 5, 2, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 5, 2, 2)        4812.608            0.000000
+              NO_NEGATIVA_QIJK( 5, 2, 3)        29220.75            0.000000
+              NO_NEGATIVA_QIJK( 5, 2, 4)        19480.50            0.000000
+              NO_NEGATIVA_QIJK( 5, 3, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 5, 3, 2)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 5, 3, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 5, 3, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 6, 1, 1)        21414.65            0.000000
+              NO_NEGATIVA_QIJK( 6, 1, 2)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 6, 1, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 6, 1, 4)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 6, 2, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 6, 2, 2)        11897.02            0.000000
+              NO_NEGATIVA_QIJK( 6, 2, 3)        8565.858            0.000000
+              NO_NEGATIVA_QIJK( 6, 2, 4)        5710.572            0.000000
+              NO_NEGATIVA_QIJK( 6, 3, 1)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 6, 3, 2)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 6, 3, 3)        0.000000            0.000000
+              NO_NEGATIVA_QIJK( 6, 3, 4)        0.000000            0.000000
+      CERO_CREMA_MANTECA_SANTA_FE( 5, 1)        0.000000           -31.63890
+      CERO_CREMA_MANTECA_SANTA_FE( 5, 2)        0.000000            47.28849
+      CERO_CREMA_MANTECA_SANTA_FE( 5, 3)        0.000000           0.5303514
+      CERO_CREMA_MANTECA_SANTA_FE( 5, 4)        0.000000            5.056791
+      CERO_CREMA_MANTECA_SANTA_FE( 6, 1)        0.000000            6.740664
+      CERO_CREMA_MANTECA_SANTA_FE( 6, 2)        0.000000            76.71334
+      CERO_CREMA_MANTECA_SANTA_FE( 6, 3)        0.000000            29.95520
+      CERO_CREMA_MANTECA_SANTA_FE( 6, 4)        0.000000            34.48164
+       NO_NEGATIVA_STOCK_EN_POLVO( 1, 1)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 1, 2)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 1, 5)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 1, 6)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 2, 1)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 2, 2)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 2, 5)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 2, 6)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 3, 1)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 3, 2)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 3, 5)        0.000000            0.000000
+       NO_NEGATIVA_STOCK_EN_POLVO( 3, 6)        0.000000            0.000000
+  CERO_STOCK_FLUIDA_CREMA_MANTECA( 1, 3)        0.000000            0.000000
+  CERO_STOCK_FLUIDA_CREMA_MANTECA( 1, 4)        116294.5            0.000000
+  CERO_STOCK_FLUIDA_CREMA_MANTECA( 2, 3)        0.000000            0.000000
+  CERO_STOCK_FLUIDA_CREMA_MANTECA( 2, 4)        86849.99            0.000000
+  CERO_STOCK_FLUIDA_CREMA_MANTECA( 3, 3)        0.000000            0.000000
+  CERO_STOCK_FLUIDA_CREMA_MANTECA( 3, 4)        0.000000            0.000000
+     NO_NEGATIVA_DESCREMADA_SANTA_FE( 1)        0.000000            0.000000
+     NO_NEGATIVA_DESCREMADA_SANTA_FE( 2)        0.000000            0.000000
+     NO_NEGATIVA_DESCREMADA_SANTA_FE( 3)        0.000000            0.000000
+          CERO_DESCREMADA_BUCLE_SANTA_FE        0.000000           -24.43994
+     NO_NEGATIVA_ENTERA_A_DESCREMADA( 1)        2101778.            0.000000
+     NO_NEGATIVA_ENTERA_A_DESCREMADA( 2)        1575179.            0.000000
+     NO_NEGATIVA_ENTERA_A_DESCREMADA( 3)        0.000000            0.000000
+   CERO_ENTERA_DESCREMADA_BUCLE_SANTA_FE        0.000000            0.000000
+          NO_NEGATIVA_CREMA_PLANTA_J( 1)        168142.2            0.000000
+          NO_NEGATIVA_CREMA_PLANTA_J( 2)        126014.3            0.000000
+          NO_NEGATIVA_CREMA_PLANTA_J( 3)        0.000000            0.000000
+                     CERO_CREMA_SANTA_FE        0.000000            0.000000
